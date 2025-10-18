@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Admin - Stats</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <p><a href="/_admin/logs">Logs</a> · <a href="/_admin/export">CSV Export</a> · <a href="/logout">Logout</a></p>
+  <p>Period: last {{ hours }} hours</p>
+
+  <h3>Top IPs</h3>
+  <table border="1" cellpadding="6">
+    <tr><th>#</th><th>IP</th><th>Count</th></tr>
+    {% for i, pair in enumerate(top_ips) %}
+      <tr><td>{{ i+1 }}</td><td>{{ pair[0] }}</td><td>{{ pair[1] }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h3>Top Routes</h3>
+  <table border="1" cellpadding="6">
+    <tr><th>#</th><th>Route</th><th>Count</th></tr>
+    {% for i, pair in enumerate(top_routes) %}
+      <tr><td>{{ i+1 }}</td><td>{{ pair[0] }}</td><td>{{ pair[1] }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h3>Top Click Labels</h3>
+  <table border="1" cellpadding="6">
+    <tr><th>#</th><th>Label</th><th>Count</th></tr>
+    {% for i, pair in enumerate(top_clicks) %}
+      <tr><td>{{ i+1 }}</td><td>{{ pair[0] }}</td><td>{{ pair[1] }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h3>Top IPs - Details</h3>
+  <table border="1" cellpadding="6">
+    <tr><th>IP</th><th>Sessions</th><th>Last Seen (UTC)</th></tr>
+    {% for d in ip_details %}
+      <tr><td>{{ d.ip }}</td><td>{{ d.sessions }}</td><td>{{ d.last_seen }}</td></tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
